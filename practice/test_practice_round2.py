@@ -17,7 +17,6 @@ from practice.challenge_python_helpers import find_missing_number, first_unique,
 def test_find_missing_number_in_basic_sequences(nums, expected):
     assert find_missing_number(nums) == expected
 
-
 @pytest.mark.parametrize(
     ("items", "expected"),
     [
