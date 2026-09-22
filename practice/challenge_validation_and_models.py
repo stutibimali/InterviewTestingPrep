@@ -6,13 +6,15 @@ app = FastAPI(title="Validation Practice")
 
 class Order(BaseModel):
     product: str
-    quantity: int = Field(default=1)
+    quantity: int = Field(default=1,gt=0)
+    #quantity: int = Field(default=1)
     price: float = 0.0
 
 
 class UserProfile(BaseModel):
     email: str
-    age: int
+    #age: int
+    age: int = Field(gt=0)
     role: str = "user"
 
 
