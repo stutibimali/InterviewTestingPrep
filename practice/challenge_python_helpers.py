@@ -19,8 +19,8 @@ def first_unique(items):
 def find_missing_number(nums):
     """Given 1..n with one number missing, return the missing number."""
     nums = sorted(nums)
-    for index, value in enumerate(nums, start=nums[0]):
-        print(index,value)
+    #for index, value in enumerate(nums, start=nums[0]):
+    for index, value in enumerate(nums, start=1):
         if value != index:
             return index
     return len(nums) +1

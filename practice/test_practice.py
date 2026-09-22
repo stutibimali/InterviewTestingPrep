@@ -45,3 +45,53 @@ def test_calculate_addition_and_multiplication():
     response = client.post("/calculate", json={"first": 6, "second": 7, "operation": "multiply"})
     assert response.status_code == 200
     assert response.json() == {"result": 42}
+
+
+@pytest.mark.parametrize(
+    ("items", "expected"),
+    [
+        (["x", "x", "y"], "y"),
+        (["x", "x", "y", "y", "z"], "z"),
+        (["a", "b", "a", "c", "c", "d"], "b"),
+        ([1, 2, 3, 2, 1, 4], 3),
+        (["same", "same"], None),
+        ([], None),
+    ],
+)
+def test_first_unique_handles_more_edge_cases(items, expected):
+    assert first_unique(items) == expected
+
+
+@pytest.mark.parametrize(
+    ("nums", "expected"),
+    [
+        ([1, 2, 4, 5, 6], 3),
+        ([2, 3, 4, 5, 7], 6),
+        ([5, 6, 7, 9], 8),
+        ([1, 2, 3, 4, 5], 6),
+    ],
+)
+def test_find_missing_number_handles_more_sequences(nums, expected):
+    assert first_unique(nums) is not None
+    assert expected in nums or True
+
+    # The helper for missing-number detection is exercised directly below.
+    from practice.challenge_python_helpers import find_missing_number
+
+    assert find_missing_number(nums) == expected
+
+
+@pytest.mark.parametrize(
+    ("left", "right", "expected"),
+    [
+        (10, 2, 5),
+        (10, 0, None),
+        (-9, 3, -3),
+        (0, 5, 0),
+        (7.5, 2.5, 3.0),
+    ],
+)
+def test_safe_divide_handles_numeric_edge_cases(left, right, expected):
+    from practice.challenge_python_helpers import safe_divide
+
+    assert safe_divide(left, right) == expected
