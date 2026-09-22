@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+app/__init__.py
+app/calculator.py
+app/main.py
+app/models.py
+fastapi_debug_lab.egg-info/PKG-INFO
+fastapi_debug_lab.egg-info/SOURCES.txt
+fastapi_debug_lab.egg-info/dependency_links.txt
+fastapi_debug_lab.egg-info/requires.txt
+fastapi_debug_lab.egg-info/top_level.txt
+tests/test_api.py
