@@ -20,7 +20,8 @@ def test_first_unique_returns_first_non_duplicate(items, expected):
     ("nums", "expected"),
     [
         ([1, 2, 4, 5, 6], 3),
-        ([2, 3, 4, 5, 7], 1),
+        #([2, 3, 4, 5, 7], 1),
+        ([2, 3, 4, 5, 7], 6),
         ([5, 6, 7, 8, 10], 9),
         ([1, 2, 3, 4], 5),
     ],

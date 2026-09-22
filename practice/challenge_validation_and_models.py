@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel, Field
 
 app = FastAPI(title="Validation Practice")
@@ -25,4 +25,11 @@ def create_order(order: Order):
 
 @app.post("/profiles")
 def create_profile(profile: UserProfile):
-    return {"email": profile.email, "age": profile.age, "role": profile.role}
+    if not profile.email or profile.email.isspace:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Required email: '{profile.email}'"
+    )
+    return  {"email": profile.email, "age": profile.age, "role": profile.role}
+    
+    #return {"email": profile.email, "age": profile.age, "role": profile.role}
