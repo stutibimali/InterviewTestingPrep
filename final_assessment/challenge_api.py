@@ -34,7 +34,7 @@ def create_batch(batch: BatchRequest):
 @app.get("/batches/{batch_id}")
 def get_batch(batch_id: str):
     if batch_id == "missing":
-        return {"detail": "batch not found"}
+        raise HTTPException(status_code=404, detail= "batch not found")
     return {"batch_id": batch_id, "state": "queued"}
 
 

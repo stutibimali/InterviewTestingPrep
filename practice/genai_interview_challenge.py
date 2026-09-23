@@ -41,5 +41,5 @@ def rank_documents(query: str, documents: list[str]) -> list[str]:
         score = sum(word in doc.lower().split() for word in lowered_query)
         ranked.append((doc, score))
 
-    ranked.sort(key=lambda item: item[1], reverse=True)
+    ranked.sort(key=lambda item: item[1], reverse=False)
     return [doc for doc, _ in ranked]

@@ -11,10 +11,10 @@ def load_limits() -> dict[str, int]:
 
 def unique_in_order(values: list[str]) -> list[str]:
     """Remove duplicates while preserving first-seen order."""
-    return list(set(values))
+    return list(dict.fromkeys(values))
 
 
 def calculate_total(prices: list[float], discount: float, tax: float) -> float:
     """Apply discount, then tax, and round the final invoice total."""
     subtotal = sum(prices)
-    return round(subtotal * (1 - discount) + tax, 2)
+    return round(subtotal * (1 - discount) * (1 + tax / 2), 2)

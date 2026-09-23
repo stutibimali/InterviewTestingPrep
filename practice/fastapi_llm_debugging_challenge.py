@@ -30,7 +30,7 @@ def build_answer(question: str, context: list[str] | None) -> str:
     if not cleaned_context:
         return "I need more context to answer that question."
 
-    return f"Based on the context: {cleaned_context[0]} | Question: {question.strip()}"
+    return f"Based on the context: {" ".join(cleaned_context)} | Question: {question.strip()}"
 
 
 @app.post("/chat")

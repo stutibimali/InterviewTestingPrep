@@ -12,7 +12,7 @@ class Schedule(BaseModel):
 
     @model_validator(mode="after")
     def ends_after_start(self):
-        if self.starts_at < self.ends_at:
+        if self.starts_at > self.ends_at:
             raise ValueError("ends_at must be after starts_at")
         return self
 
@@ -24,7 +24,9 @@ class RunRequest(BaseModel):
 @app.post("/jobs/{job_id}/run", status_code=202)
 def run_job(job_id: str, request: RunRequest):
     if job_id == "missing":
-        return {"detail": "job not found"}
+        raise HTTPException(
+            status_code=404,detail= "job not found"
+            )
     return {"job_id": job_id, "state": "running", "force": request.force}
 
 

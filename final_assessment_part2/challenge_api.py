@@ -36,5 +36,8 @@ def create_invoice(invoice: Invoice):
 @app.delete("/invoices/{invoice_id}")
 def delete_invoice(invoice_id: str, _: str = Depends(require_admin)):
     if invoice_id == "missing":
-        return {"detail": "invoice not found"}
+        raise HTTPException(
+            status_code=404,
+            detail= "invoice not found"
+            )
     return {"deleted": invoice_id}
