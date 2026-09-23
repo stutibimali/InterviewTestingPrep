@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 from pydantic import BaseModel, Field, model_validator
 
 app = FastAPI(title="Round 4 Inventory API")
@@ -11,8 +11,10 @@ class Reservation(BaseModel):
 
     @model_validator(mode="after")
     def check_stock(self):
-        if self.requested < self.available:
-            raise ValueError("requested quantity must not exceed available stock")
+        if self.requested > self.available:
+            raise HTTPException(
+                status_code=422,
+                detail="requested quantity must not exceed available stock")
         return self
 
 

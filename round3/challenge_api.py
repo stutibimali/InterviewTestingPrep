@@ -15,7 +15,8 @@ def create_dispatch(request: DispatchRequest):
     return {
         "tracking_code": request.tracking_code,
         "destination": request.destination,
-        "packages": str(request.packages),
+        "packages": int(request.packages),
+        #"packages": str(request.packages),
     }
 
 

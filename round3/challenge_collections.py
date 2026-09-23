@@ -3,7 +3,8 @@ def group_shipments_by_region(shipments: list[dict]) -> dict[str, list[dict]]:
     grouped = {}
     for shipment in shipments:
         region = shipment["region"]
-        grouped.setdefault(region, shipment)
+        #grouped.setdefault(region, shipment)
+        grouped.setdefault(region, []).append(shipment)
     return grouped
 
 
@@ -15,5 +16,6 @@ def summarize_scores(scores: list[int]) -> dict[str, float | int | None]:
         "count": len(scores),
         "minimum": min(scores),
         "maximum": max(scores),
-        "mean": sum(scores) // len(scores),
+        "mean": sum(scores) / len(scores),
+        #"mean": sum(scores) // len(scores),
     }

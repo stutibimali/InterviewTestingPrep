@@ -7,5 +7,6 @@ def load_feature_flags() -> dict[str, bool]:
     flags = {}
     for item in raw_flags.split(","):
         name, value = item.split("=", maxsplit=1)
-        flags[name.strip()] = bool(value.strip())
+        flags[name.strip()] = bool((lambda x:x==1) if value.strip()=="true" else 0)
+        #flags[name.strip()] = bool(value.strip())
     return flags
